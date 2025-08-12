@@ -1,0 +1,416 @@
+:root {
+  --color-primary: #00151e;
+  --color-secondary: #8a8a8a;
+  --color-white: #ffffff;
+  --color-highlight: #0257aa;
+  --color-btn: #ff4c2f;
+  --body-bg: #f0f0f0;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  letter-spacing: 0.04rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--body-bg);
+}
+
+@font-face {
+  font-family: 'Switzer Light';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Switzer Light'), url('assets/fonts/Switzer-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Switzer Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Switzer Regular'), url('assets/fonts/Switzer-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Switzer Semibold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Switzer Semibold'), url('assets/fonts/Switzer-Semibold.woff') format('woff');
+}
+
+
+@font-face {
+  font-family: 'Play Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Play Regular'), url('assets/fonts/Play-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Play Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Play Bold'), url('assets/fonts/Play-Bold.woff') format('woff');
+}
+
+h1 {
+  font-family: 'Play Bold';
+  color: var(--color-primary);
+  font-size: 10.3vw;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: .4rem;
+}
+
+p {
+  font-size: clamp(14px, 4vw, 24px);
+  color: var(--color-primary);
+  line-height: 1.6;
+  font-family: 'Switzer Light';
+
+}
+
+img {
+  width: 100%;
+}
+
+header {
+  padding: 1.5vw 3vw;
+  overflow: hidden;
+}
+
+.navbar-links {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  justify-content: end;
+  margin-top: 1rem;
+}
+
+.navbar-links a {
+  letter-spacing: 0.04rem;
+  text-decoration: none;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  font-size: clamp(12px, 3vw, 14px);
+  font-family: 'Switzer Semibold';
+  position: relative;
+}
+
+.navbar-links a:after {
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 0.5px;
+  background: var(--color-primary);
+  content: "";
+  transition: all 200ms ease-in-out;
+}
+
+.navbar-links a:hover::after {
+  width: 100%;
+}
+
+
+.sec_heading {
+  font-family: 'Switzer Light';
+  font-size: 3vw;
+  text-transform: capitalize;
+  font-weight: 400;
+  color: var(--color-primary);
+}
+
+small {
+  font-family: 'Switzer Regular';
+
+  font-size: clamp(12px, 3vw, 14px);
+  letter-spacing: 0.1rem;
+}
+
+.spinner_sm {
+  width: 1.2rem;
+  height: 1.2rem;
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.btn {
+  letter-spacing: 0.06rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-highlight);
+  font-family: 'Switzer Semibold';
+  border-bottom: 2px solid var(--color-highlight);
+  width: max-content;
+  cursor: pointer;
+}
+
+.wave-button {
+  display: inline-block;
+  height: 24px;
+  width: 200px;
+  overflow: hidden;
+  position: relative;
+  line-height: 1.18;
+}
+
+.line {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.line span {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.second-line span {
+  transform: translateY(100%);
+}
+
+.first-line span {
+  transform: translateY(0);
+}
+
+.wave-button:hover .first-line span {
+  transform: translateY(-100%);
+}
+
+.wave-button:hover .second-line span {
+  transform: translateY(0);
+}
+
+/* Delays for up to 18 characters */
+.first-line span:nth-child(1),
+.second-line span:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.first-line span:nth-child(2),
+.second-line span:nth-child(2) {
+  transition-delay: 0.02s;
+}
+
+.first-line span:nth-child(3),
+.second-line span:nth-child(3) {
+  transition-delay: 0.04s;
+}
+
+.first-line span:nth-child(4),
+.second-line span:nth-child(4) {
+  transition-delay: 0.06s;
+}
+
+.first-line span:nth-child(5),
+.second-line span:nth-child(5) {
+  transition-delay: 0.08s;
+}
+
+.first-line span:nth-child(6),
+.second-line span:nth-child(6) {
+  transition-delay: 0.10s;
+}
+
+.first-line span:nth-child(7),
+.second-line span:nth-child(7) {
+  transition-delay: 0.12s;
+}
+
+.first-line span:nth-child(8),
+.second-line span:nth-child(8) {
+  transition-delay: 0.14s;
+}
+
+.first-line span:nth-child(9),
+.second-line span:nth-child(9) {
+  transition-delay: 0.16s;
+}
+
+.first-line span:nth-child(10),
+.second-line span:nth-child(10) {
+  transition-delay: 0.18s;
+}
+
+.first-line span:nth-child(11),
+.second-line span:nth-child(11) {
+  transition-delay: 0.20s;
+}
+
+.first-line span:nth-child(12),
+.second-line span:nth-child(12) {
+  transition-delay: 0.22s;
+}
+
+.first-line span:nth-child(13),
+.second-line span:nth-child(13) {
+  transition-delay: 0.24s;
+}
+
+.first-line span:nth-child(14),
+.second-line span:nth-child(14) {
+  transition-delay: 0.26s;
+}
+
+.first-line span:nth-child(15),
+.second-line span:nth-child(15) {
+  transition-delay: 0.28s;
+}
+
+.first-line span:nth-child(16),
+.second-line span:nth-child(16) {
+  transition-delay: 0.30s;
+}
+
+.first-line span:nth-child(17),
+.second-line span:nth-child(17) {
+  transition-delay: 0.32s;
+}
+
+.first-line span:nth-child(18),
+.second-line span:nth-child(18) {
+  transition-delay: 0.34s;
+}
+
+.first-line span:nth-child(19),
+.second-line span:nth-child(19) {
+  transition-delay: 0.36s;
+}
+
+.target-cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+}
+
+.target-cursor-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  background: var(--color-highlight);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.target-cursor-corner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border: 3px solid var(--color-highlight);
+  will-change: transform;
+}
+
+.corner-tl {
+  transform: translate(-150%, -150%);
+  border-right: none;
+  border-bottom: none;
+}
+
+.corner-tr {
+  transform: translate(50%, -150%);
+  border-left: none;
+  border-bottom: none;
+}
+
+.corner-br {
+  transform: translate(50%, 50%);
+  border-left: none;
+  border-top: none;
+}
+
+.corner-bl {
+  transform: translate(-150%, 50%);
+  border-right: none;
+  border-top: none;
+}
+
+.skills_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 4vw;
+}
+
+.skill_heading {
+  font-family: 'Switzer Semibold';
+  letter-spacing: 0.04rem;
+  width: 100%;
+  font-size: clamp(16px, 4vw, 18px);
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+*::selection {
+  background: var(--color-btn);
+  color: var(--color-white);
+}
+
+span.cursor-target {
+  padding: 8px 16px;
+  border: 1px dashed;
+  border-radius: 4px;
+  line-height: 1;
+  font-size: clamp(12px, 4vw, 14px);
+  font-family: 'Play Bold';
+
+}
+
+.cursor-target {
+  max-width: max-content;
+}
+
+
+.scroll-reveal {
+  margin: 0 0 2vw 0;
+}
+
+
+.word {
+  display: inline-block;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
+
+.variable-proximity {
+  font-family: "Roboto Flex", sans-serif;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

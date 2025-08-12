@@ -27,7 +27,7 @@ function Home() {
             <a href="#services">Services</a>
           </li>
           <li>
-            <a href="#contact">Contact</a>
+            <a href="#contact">Contact Me</a>
           </li>
         </ul>
       </header>
@@ -39,9 +39,8 @@ function Home() {
       <Experience />
       <ScrollVelocity
         texts={[
-"* Shopify Design and Development * Frontend Developer * Speed Optimization * Custom Theme Developer * Available for Freelance & Full-Time * Web Development * WordPress Design and Development * React Development * GoHighLevel Development",
-"* GoHighLevel Development * React Development * WordPress Design and Development * Web Development * Available for Freelance & Full-Time * Custom Theme Developer * Speed Optimization * Frontend Developer * Shopify Design and Development"
-
+          "* Shopify Design and Development * Frontend Developer * Speed Optimization * Custom Theme Developer * Available for Freelance & Full-Time * Web Development * WordPress Design and Development * React Development * GoHighLevel Development",
+          "* GoHighLevel Development * React Development * WordPress Design and Development * Web Development * Available for Freelance & Full-Time * Custom Theme Developer * Speed Optimization * Frontend Developer * Shopify Design and Development",
         ]}
         className="custom-scroll-text"
       />

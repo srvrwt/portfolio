@@ -11,23 +11,23 @@ const Section = styled.section`
   .tws {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.5vw;
     text-transform: uppercase;
   }
   .headline {
-    max-width: 800px;
-    margin-top: 2rem;
+    max-width: 50vw;
+    margin: 3vw 0;
     display: flex;
     flex-flow: column;
-    gap: 1.5rem;
+    gap: 2vw;
   }
   .circular-text {
-    margin: -120px -120px 0 auto;
+    margin: -8vw -8vw 0 auto;
     font-family: "Play Bold";
     border-radius: 50%;
-    width: 200px;
+    width: 14vw;
     position: relative;
-    height: 200px;
+    height: 14vw;
     font-weight: bold;
     color: var(--color-primary);
     font-weight: 900;
@@ -35,6 +35,8 @@ const Section = styled.section`
     cursor: pointer;
     transform-origin: 50% 50%;
     -webkit-transform-origin: 50% 50%;
+    min-width: 120px;
+    min-height: 120px;
   }
 
   .circular-text span {
@@ -44,18 +46,52 @@ const Section = styled.section`
     right: 0;
     top: 0;
     bottom: 0;
-    font-size: 24px;
+    font-size: clamp(12px, 2vw, 1.4vw);
     transition: all 0.5s cubic-bezier(0, 0, 0, 1);
   }
   .resume_group {
     display: flex;
-    gap: 1rem;
+    gap: 1vw;
     align-items: inherit;
   }
   .resume_group svg {
-    width: 24px;
-    height: 24px;
+    width: 1.5vw;
+    min-width: 20px;
+    height: auto;
     stroke: var(--color-highlight);
+    vertical-align: middle;
+  }
+  p {
+    font-size: clamp(16px, 4vw, 1.6vw);
+  }
+  @media (max-width: 1024px) {
+    .headline {
+      max-width: 70vw;
+    }
+  }
+  @media (max-width: 768px) {
+    padding: 3rem 1rem 1rem;
+    .headline {
+      margin-top: 2rem;
+      gap: 1.4rem;
+      max-width: 80vw;
+    }
+    .resume_group {
+      gap: 0.5rem;
+    }
+    .tws {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+  }
+  @media (max-width: 480px) {
+    .headline {
+      max-width: 100%;
+      margin: 0;
+    }
+    .circular-text {
+      margin: 0 -4rem 0 auto;
+    }
   }
 `;
 

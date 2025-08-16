@@ -9,32 +9,31 @@ const Section = styled.section`
   padding: 8vw 3vw;
   overflow: hidden;
   display: flex;
-  gap: 10vw;
+  gap: 3vw;
   justify-content: space-between;
   background: #00151e;
 
   .tws {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.5vw;
     text-transform: uppercase;
     color: #ababab;
+    white-space: nowrap;
+    flex-wrap: wrap;
   }
   .headline {
-    max-width: 800px;
+    max-width: 40vw;
     display: flex;
     flex-flow: column;
-    gap: 1.5rem;
+    gap: 2vw;
   }
   .wave-button {
-    height: 58px;
-    width: 560px;
-    font-size: 48px;
+    font-size: clamp(16px, 3.5vw, 3.5vw);
   }
   p {
-    font-size: clamp(12px, 4vw, 14px);
-    margin-top: 0.5rem;
-    max-width: 600px;
+    font-size: clamp(14px, 1vw, 1vw);
+    margin-top: 0;
     width: 100%;
     color: #ababab;
   }
@@ -45,10 +44,10 @@ const Section = styled.section`
     font-family: "Switzer Regular";
     text-transform: uppercase;
     color: #ababab;
-    font-size: clamp(12px, 4vw, 16px);
+    font-size: clamp(14px, 1vw, 1vw);
   }
   .link_item a {
-    font-size: clamp(12px, 4vw, 16px);
+    font-size: clamp(16px, 1.1vw, 1.1vw);
     font-family: "Switzer Regular";
     color: var(--color-white);
     text-decoration: none;
@@ -72,34 +71,57 @@ const Section = styled.section`
     width: 100%;
   }
   .link_item {
-    margin-top: 4px;
+    margin-top: 0.5vw;
     color: var(--color-white);
+    font-size: clamp(16px, 1.2vw, 1.2vw);
+  }
+  .link_item {
+    margin-top: 0.5vw;
+    color: var(--color-white);
+    font-size: clamp(14px, 1vw, 1vw);
   }
   .btn {
     color: var(--color-white);
     border-color: var(--color-white);
   }
-  .btn.download-btn {
-    border-color: var(--color-highlight);
-    margin-top: 2.2vw;
-    display: inline-flex;
-    gap: 0.6rem;
-    font-family: "Switzer Regular";
-    font-size: clamp(12px, 4vw, 16px);
-    color: var(--color-highlight);
-    padding: 12px 18px;
-    background: var(--color-btn);
-    color: var(--color-white);
-    border: none;
-    border-radius: 4px;
+  .btn.btn-solid {
+    margin-top: 2.4vw;
   }
-  .btn.download-btn:hover {
-    background: var(--color-highlight);
-    transition: all 200ms ease-in-out;
-    color: var(--color-white);
+  @media (max-width: 1024px) {
+    .headline {
+      max-width: 60vw;
+    }
   }
-  .download-btn:active {
-    opacity: 0.5;
+  @media (max-width: 768px) {
+    padding: 3rem 1rem;
+    gap: 3rem;
+    flex-direction: column;
+
+    .headline {
+      max-width: 100%;
+      gap: 1.5rem;
+    }
+    .link_item + .link_heading {
+      margin-top: 1.5rem;
+    }
+    .btn.btn-solid {
+      margin-top: 2.4rem;
+    }
+
+    .link_item {
+      margin-top: 0.5rem;
+    }
+    .wave-button {
+      font-size: clamp(16px, 10vw, 8vw);
+    }
+    .tws {
+      gap: 1rem;
+    }
+  }
+  @media (max-width: 480px) {
+    .wave-button {
+      font-size: clamp(16px, 10vw, 7.6vw);
+    }
   }
 `;
 
@@ -114,7 +136,11 @@ function Footer() {
           Let’s Turn Your Idea Into a Live Experience
         </small>
 
-        <a href="matlto:rwtsrv2112000@gmail.com" target="blank" className="btn wave-button">
+        <a
+          href="matlto:rwtsrv2112000@gmail.com"
+          target="blank"
+          className="btn wave-button"
+        >
           <span className="line first-line">
             {`LET'S WORK TOGETHER`.split("").map((char, i) => (
               <span key={`l1-${i}`} className={char === " " ? "space" : ""}>
@@ -159,7 +185,7 @@ function Footer() {
         <li className="link_item">New Delhi – 110067, India</li>
 
         <a
-          className="btn download-btn"
+          className="btn btn-solid"
           href={resumePDF}
           download
           title="Download Resume"

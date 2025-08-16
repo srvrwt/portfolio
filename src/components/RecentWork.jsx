@@ -30,18 +30,18 @@ const Section = styled.section`
   .project_title {
     font-family: "Switzer Light";
     letter-spacing: 0.04rem;
-    font-size: clamp(18px, 3vw, 36px);
+    font-size: clamp(24px, 3vw, 2.4vw);
     font-weight: 300;
   }
   .project_heading {
     font-family: "Switzer Regular";
     color: var(--color-secondary);
-    font-size: clamp(12px, 4vw, 16px);
+    font-size: clamp(16px, 3vw, 1.2vw);
     margin-top: 2vw;
   }
   .project_details ul li,
   .project_info {
-    font-size: clamp(12px, 4vw, 16px);
+    font-size: clamp(14px, 3vw, 1.1vw);
     margin-top: 0.5rem;
     font-family: "Switzer Light";
   }
@@ -49,7 +49,7 @@ const Section = styled.section`
     width: 100%;
   }
   .project_gallery p {
-    font-size: clamp(12px, 4vw, 14px);
+    font-size: clamp(12px, 1vw, 0.8vw);
     font-family: "Switzer Regular";
     margin-bottom: 2vw;
   }
@@ -64,7 +64,7 @@ const Section = styled.section`
   }
   .project_details ul,
   .project_info + .project_info {
-    margin-top: 0.5rem;
+    margin-top: 1rem;
   }
   .work_container.gallery_first {
     grid-template-columns: 1.5fr 1fr;
@@ -87,15 +87,67 @@ const Section = styled.section`
     object-fit: contain;
   }
   h2 {
-    font-size: 8vw;
+    font-size: clamp(2rem, 8vw, 8vw);
     font-family: "Play Bold";
     text-transform: uppercase;
   }
   .wave-button {
-    height: 20px;
-    width: 116px;
     margin-top: 2vw;
-    font-size: clamp(12px, 4vw, 15px);
+    font-size: clamp(12px, 2vw, 1vw);
+  }
+  @media (max-width: 1024px) {
+    .work_container.gallery_first,
+    .work_container {
+      gap: 3vw;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 768px) {
+    padding: 3rem 1rem;
+    gap: 1.5rem;
+
+    .work_container.gallery_first,
+    .work_container {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 0;
+      background: none;
+    }
+    .project_gallery {
+      order: 1;
+    }
+    .project_details {
+      order: 2;
+    }
+    .project_det {
+      padding: 3rem 0 0;
+    }
+    .project_gallery p {
+      margin: 0 !important;
+    }
+    .gallery_mb,
+    .project_gallery p + img,
+    .wave-button,
+    .project_heading {
+      margin-top: 1.5rem;
+    }
+    .wave-button {
+      margin-top: 1.4rem;
+      font-size: clamp(14px, 2vw, 1vw);
+    }
+    .work_container + .work_container {
+      margin-top: 3rem;
+    }
+  }
+  @media (max-width: 480px) {
+    padding: 3rem 1rem;
+    .project_det {
+      padding: 1.5rem 0 0;
+    }
+    .wave-button,
+    .project_heading {
+      margin-top: 1.4rem;
+    }
   }
 `;
 

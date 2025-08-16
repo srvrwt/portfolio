@@ -17,7 +17,8 @@ const Section = styled.section`
     background: var(--color-primary);
   }
   .left-section {
-    width: 20%;
+    width: 10%;
+    min-width: 140px;
   }
 
   h2 {
@@ -69,13 +70,13 @@ const Section = styled.section`
     border: none;
     color: var(--color-white);
     text-align: left;
-    padding: 0.5rem 0.5rem 0.5rem 0;
-    font-size: clamp(14px, 4vw, 16px);
+    padding: 0.5vw 0.5vw 0.5vw 0;
+    font-size: clamp(14px, 1.5vw, 1vw);
     cursor: pointer;
     border-bottom: 1px solid transparent;
     display: flex;
     transition: all 200ms ease-in-out;
-    gap: 0.8rem;
+    gap: 0.5vw;
     align-items: center;
   }
   .filter-btn.active {
@@ -87,20 +88,19 @@ const Section = styled.section`
   }
 
   .right-section {
-    width: 80%;
+    width: 90%;
     overflow: auto;
   }
 
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+    gap: 1.5vw;
     align-items: start;
   }
 
   .project-card {
     position: relative;
-    margin-bottom: 1.5rem;
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -128,32 +128,32 @@ const Section = styled.section`
     position: absolute;
     bottom: 0;
     left: 0;
-    gap: 1rem;
+    gap: 1vw;
     justify-content: space-between;
     color: var(--color-primary);
     transform: translateY(100%);
     transition: transform 0.3s ease;
     width: 100%;
     background: var(--color-white);
-    padding: 0.4rem 1rem;
+    padding: 0.5vw 1vw;
     font-family: "Switzer Regular";
   }
   .project-card:hover .project-info {
     transform: translateY(0);
   }
   .project-title {
-    font-size: clamp(10px, 3vw, 14px);
+    font-size: clamp(10px, 1.5vw, 0.8vw);
   }
   .project-subtitle {
-    font-size: clamp(10px, 3vw, 12px);
+    font-size: clamp(10px, 1.5vw, 0.8vw);
     margin-top: 0.2rem;
     text-transform: capitalize;
   }
   .wrok_platform {
     align-items: center;
     display: flex;
-    width: 24%;
-    min-width: 30px;
+    width: 20%;
+    min-width: 42px;
     justify-content: end;
   }
   .platform-icon {
@@ -170,8 +170,9 @@ const Section = styled.section`
   }
   .filter-btn.active svg,
   .filter-btn:hover svg {
-    width: 20px;
-    height: 20px;
+    width: 1vw;
+    height: 1vw;
+    min-width: 12px;
   }
   .project-image-container img {
     transition: all 10s linear;
@@ -180,13 +181,13 @@ const Section = styled.section`
     object-position: bottom;
   }
   .hover-heading {
-    padding: 6vw 0;
+    padding: 8vw 0;
     text-align: center;
   }
   .hover-heading .variable-proximity {
-    font-size: 6vw;
+    font-size: clamp(24px, 8vw, 6vw);
     color: var(--color-primary);
-    -webkit-text-stroke: 6px;
+    -webkit-text-stroke: 0.4vw;
     text-transform: capitalize;
   }
   .hover-heading .variable-proximity * {
@@ -195,18 +196,67 @@ const Section = styled.section`
     line-height: 1.4;
   }
   .wave-button {
-    height: 58px;
-    width: 432px;
-    font-size: 48px;
+    font-size: clamp(18px, 4vw, 3vw);
     display: block;
     overflow: hidden;
     position: relative;
-    line-height: 1.18;
     margin-top: 1vw;
     margin: 1.2vw auto 0;
   }
   .line {
     justify-content: center;
+  }
+
+  @media (max-width: 1160px) {
+    flex-direction: column;
+
+    .left-section,
+    .right-section {
+      width: 100%;
+    }
+
+    .left-section {
+      padding: 3rem 3vw;
+    }
+    .columns-container {
+      gap: 1rem;
+    }
+  }
+  @media (max-width: 1024px) {
+    .hover-heading .variable-proximity {
+      font-size: clamp(24px, 8vw, 6vw);
+    }
+  }
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+    }
+    .hover-heading {
+      padding: 3rem 0;
+    }
+    .hover-heading .variable-proximity {
+      -webkit-text-stroke: 0.2rem;
+    }
+    .hover-heading .variable-proximity {
+      font-size: clamp(24px, 8vw, 5vw);
+    }
+    .wave-button {
+      margin: 1rem auto 0;
+    }
+    .hover-heading .variable-proximity * {
+      word-spacing: normal;
+      line-height: 1.6;
+    }
+    .project-info {
+      padding: 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .left-section {
+      padding: 3rem 1rem;
+    }
   }
 `;
 
@@ -336,7 +386,11 @@ const AllWork = () => {
           radius={100}
           falloff="linear"
         />
-        <a href="https://wa.me/919634234248" target="blank" className="btn wave-button">
+        <a
+          href="https://wa.me/919634234248"
+          target="blank"
+          className="btn wave-button"
+        >
           <span className="line first-line">
             {`Start Chat Now`.split("").map((char, i) => (
               <span key={`l1-${i}`} className={char === " " ? "space" : ""}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import HeroSection from "./components/HeroSection.jsx";
 import Work from "./components/work.jsx";
@@ -15,16 +15,16 @@ function Home() {
   return (
     <>
       <header className="App-header">
-        <h1>Saurabh Rawat</h1>
+        <h1>
+          <span>Saurabh </span>
+          <span>Rawat</span>
+        </h1>
         <ul className="navbar-links">
           <li>
             <a href="#recent-work">Recent Work</a>
           </li>
           <li>
             <a href="#about">About</a>
-          </li>
-          <li>
-            <a href="#services">Services</a>
           </li>
           <li>
             <a href="#contact">Contact</a>

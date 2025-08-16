@@ -12,23 +12,35 @@ const CursorWrapper = styled.div`
   will-change: transform;
   display: flex;
   align-items: center;
-  padding: 4px;
+  padding: 0.2vw 0.4vw 0.2vw 0.2vw;
   justify-content: center;
-  gap: 5px;
-  border-radius: 4px;
+  gap: 0.5vw;
+  border-radius: 0.2vw;
   background: var(--color-primary);
   color: var(--color-white);
-  font-size: clamp(12px, 3vw, 14px);
+  font-size: clamp(12px, 1.5vw, 0.8vw);
   line-height: 1;
-  font-family: 'Play Bold';
-}
+  font-family: "Play Bold";
 
   .cursor-icon {
-    width: 24px;
-    height: 24px;
+    width: 1.6vw;
+    height: 1.6vw;
     background: var(--color-btn);
-    padding: 4px;
-    border-radius: 2px;
+    padding: 0.4vw;
+    border-radius: 0.1vw;
+    min-width: 24px;
+    min-height: 24px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 4px 6px 4px 4px;
+    border-radius: 3px;
+    gap: 8px;
+
+    .cursor-icon {
+      padding: 4px;
+      border-radius: 2px;
+    }
   }
 `;
 

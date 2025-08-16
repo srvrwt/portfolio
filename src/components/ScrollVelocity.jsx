@@ -25,7 +25,7 @@ const Section = styled.section`
     white-space: nowrap;
     text-align: center;
     font-family: "Play Bold";
-    font-size: 4.5vw;
+    font-size: clamp(28px, 4vw, 4vw);
     font-weight: bold;
     letter-spacing: -0.02em;
     filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));

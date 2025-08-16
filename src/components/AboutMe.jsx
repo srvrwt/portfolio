@@ -3,12 +3,11 @@ import ScrollReveal from "./About.jsx";
 import CustomCursor from "./CustomCursor.jsx";
 
 const Section = styled.section`
-  padding: 1.5vw 3vw 1vw;
+  padding: 4vw 3vw;
   overflow: hidden;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   gap: 6vw;
-
 
   .scroll-reveal-text,
   .about_me {
@@ -16,11 +15,29 @@ const Section = styled.section`
     flex-direction: column;
     gap: 1vw;
   }
+
   p {
-    font-size: clamp(14px, 4vw, 20px);
+    font-size: clamp(16px, 2vw, 1.2vw);
   }
+
   strong {
     font-family: "Switzer Semibold";
+  }
+
+  @media (max-width: 1260px) {
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3vw;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 3rem 1rem;
+
+    .scroll-reveal-text,
+    .about_me {
+      gap: 0.8rem;
+    }
   }
 `;
 

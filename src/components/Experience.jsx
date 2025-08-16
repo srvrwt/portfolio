@@ -4,16 +4,14 @@ import Srv from "../assets/img/srvrwt.jpg";
 import CustomCursor from "./CustomCursor.jsx";
 
 const Section = styled.section`
-  padding: 3vw 3vw 8vw;
+  padding: 4vw 3vw 8vw;
   overflow: hidden;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   gap: 6vw;
 
-
-
   .about_me {
-   display: flex;
+    display: flex;
     flex-direction: column;
     gap: 1vw;
   }
@@ -35,7 +33,7 @@ const Section = styled.section`
 
   .job-title {
     font-family: "Play Bold";
-    font-size: clamp(14px, 4vw, 20px);
+    font-size: clamp(14px, 2vw, 1.5vw);
     font-weight: 300;
     color: #222222;
   }
@@ -58,11 +56,12 @@ const Section = styled.section`
   .organization {
     margin-top: 0.2rem;
     color: #8a8a8a;
+    font-size: clamp(14px, 2vw, 1.2vw);
   }
 
   .duration {
     color: #8a8a8a;
-    font-size: clamp(12px, 4vw, 14px);
+    font-size: clamp(12px, 2vw, 1vw);
     margin-top: 0.2rem;
   }
 
@@ -84,6 +83,28 @@ const Section = styled.section`
     width: 100%;
     height: auto;
     object-fit: cover;
+  }
+  @media (max-width: 1260px) {
+    gap: 3vw;
+    .experience_wrap {
+      gap: 3vw;
+      margin-top: 3vw;
+    }
+  }
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr 1fr;
+
+    .experience,
+    .experience:nth-child(2),
+    .experience:nth-child(3),
+    .experience:nth-child(4) {
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 3rem 1rem;
   }
 `;
 

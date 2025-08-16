@@ -9,23 +9,21 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const Section = styled.section`
-  padding: 3vw;
+  padding: 4vw 3vw;
   overflow: hidden;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   gap: 6vw;
 
-
   .about_me {
     display: flex;
     flex-direction: column;
-    gap: 1vw;
+    gap: 4vw;
   }
-
 
   .my_services li,
   p {
-    font-size: clamp(14px, 4vw, 20px);
+    font-size: clamp(16px, 2vw, 1.2vw);
   }
 
   .srv_img {
@@ -34,43 +32,84 @@ const Section = styled.section`
     margin: 8vw 0 0 16vw;
     padding: 1vw;
     overflow: hidden;
-
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--body-bg);
-      z-index: 2;
-      transform: translateY(0%);
-    }
   }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--body-bg);
+    z-index: 2;
+    transform: translateY(0%);
+  }
+
   .img_wrap_over {
     position: relative;
     overflow: hidden;
   }
+
   .my_services {
-    margin-left: -0.6rem;
+    margin-left: -0.8vw;
   }
+
   .my_services li {
     font-family: "Play Bold";
-    padding: 0.6rem;
+    padding: 0.8vw;
     display: flex;
     align-items: baseline;
-    gap: 0.6rem;
+    gap: 0.8vw;
     color: var(--color-primary);
   }
+
   .my_services li svg {
-    width: 15px;
-    height: 15px;
+    width: 1.2vw;
+    min-width: 14px;
+    height: auto;
     transform: translateY(1.5px);
+  }
+
+  @media (max-width: 1260px) {
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3vw;
+
+    .srv_img {
+      max-width: 28vw;
+      margin: 4vw 0 0;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .srv_img {
+      max-width: 100%;
+      margin-top: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 3rem 1rem;
+
+    .about_me {
+      gap: 3rem;
+    }
+
+    .my_services li {
+      padding: 0.5rem;
+      gap: 0.5rem;
+    }
+
+    .my_services {
+      margin-left: -0.5rem;
+    }
   }
 `;
 

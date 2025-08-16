@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, memo, useMemo } from "react";
+import React, { useEffect, useRef, memo, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import gsap from "gsap";
@@ -18,19 +18,20 @@ const Section = styled.section`
   }
 
   .sec_heading {
-    font-size: 4vw;
+    font-size: clamp(2rem, 4vw, 4vw);
     line-height: 0.65;
     text-transform: uppercase;
     font-family: "Play Bold";
     color: var(--color-white);
   }
+  .heading-container,
   .heading-content {
     display: flex;
     flex-direction: column;
     gap: 2vw;
   }
   .heading-content p {
-    font-size: clamp(12px, 3vw, 14px);
+    font-size: clamp(16px, 2vw, 1vw);
     color: #757575;
   }
   .right-section {
@@ -40,7 +41,7 @@ const Section = styled.section`
   .columns-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 1.5rem;
+    gap: 1.5vw;
     height: 100vh;
   }
   .scroll-column {
@@ -53,7 +54,7 @@ const Section = styled.section`
   }
   .project-card {
     position: relative;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.5vw;
     cursor: pointer;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -81,24 +82,24 @@ const Section = styled.section`
     position: absolute;
     bottom: 0;
     left: 0;
-    gap: 1rem;
+    gap: 1vw;
     justify-content: space-between;
     color: var(--color-primary);
     transform: translateY(100%);
     transition: transform 0.3s ease;
     width: 100%;
     background: var(--color-white);
-    padding: 0.4rem 1rem;
+    padding: 0.5vw 1vw;
     font-family: "Switzer Regular";
   }
   .project-card:hover .project-info {
     transform: translateY(0);
   }
   .project-title {
-    font-size: clamp(10px, 3vw, 14px);
+    font-size: clamp(10px, 1.5vw, 0.8vw);
   }
   .project-subtitle {
-    font-size: clamp(10px, 3vw, 12px);
+    font-size: clamp(10px, 1.5vw, 0.8vw);
     margin-top: 0.2rem;
     text-transform: capitalize;
   }
@@ -111,8 +112,8 @@ const Section = styled.section`
   .wrok_platform {
     align-items: center;
     display: flex;
-    width: 24%;
-    min-width: 30px;
+    width: 20%;
+    min-width: 42px;
     justify-content: end;
   }
   .platform-icon {
@@ -125,21 +126,62 @@ const Section = styled.section`
   margin-top: 2.2vw;
   display: inline-flex;
 
-  .btn-solid {
-    gap: 0.6rem;
-    font-family: "Switzer Regular";
-    font-size: clamp(12px, 4vw, 16px);
-    color: var(--color-highlight);
-    padding: 12px 18px;
-    background: var(--color-btn);
-    color: var(--color-white);
-    border: none;
-    transition: all 200ms ease-in-out;
-    border-radius: 4px;
+  @media (max-width: 1160px) {
+    flex-direction: column;
+
+    .heading-content {
+      width: 100%;
+      max-width: 400px;
+    }
+    .left-section,
+    .right-section {
+      width: 100%;
+    }
+    .heading-container {
+      flex-direction: row;
+      align-items: end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .heading-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .left-section {
+      padding: 3rem 3vw;
+    }
+    .columns-container {
+      gap: 1rem;
+    }
   }
-  .btn-solid:hover {
-    background: var(--color-highlight);
-    color: var(--color-white);
+  @media (max-width: 1024px) {
+    .project-info {
+      transform: translateY(0);
+    }
+  }
+  @media (max-width: 768px) {
+    .project-info {
+      padding: 0.5rem;
+    }
+  }
+  @media (max-width: 480px) {
+    .columns-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+    .project-card {
+      margin-bottom: 0.5rem;
+    }
+
+    .left-section {
+      padding: 3rem 1rem;
+    }
+    .heading-container,
+    .heading-content {
+      gap: 1.4rem;
+    }
   }
 `;
 
@@ -173,7 +215,7 @@ const ProjectCard = memo(({ project }) => (
         <h3 className="project-title">{project.title}</h3>
         <p className="project-subtitle">{project.subtitle}</p>
       </div>
-      {project.platforms && project.platforms.length > 0 && (
+      {project.platforms?.length > 0 && (
         <div className="wrok_platform">
           {project.platforms.map((plat, idx) => {
             const Icon = platformIcons[plat] || platformIcons.Shopify;
@@ -194,78 +236,73 @@ const ProjectCard = memo(({ project }) => (
 ));
 
 const Work = () => {
-  const col1Ref = useRef(null);
-  const col2Ref = useRef(null);
-  const col3Ref = useRef(null);
-  const pos = useRef({ col1: 0, col2: 0, col3: 0 });
+  const [columnCount, setColumnCount] = useState(
+    window.innerWidth <= 480 ? 2 : 3
+  );
+  const colRefs = useRef([]);
   const speed = useRef(1.5);
   const baseSpeed = 1.5;
 
-  // Split projects into columns
-  const col1Projects = useMemo(
-    () => projects.filter((_, i) => i % 3 === 0),
-    []
-  );
-  const col2Projects = useMemo(
-    () => projects.filter((_, i) => i % 3 === 1).reverse(),
-    []
-  );
-  const col3Projects = useMemo(
-    () => projects.filter((_, i) => i % 3 === 2),
-    []
-  );
+  useEffect(() => {
+    const handleResize = () => {
+      setColumnCount(window.innerWidth <= 480 ? 2 : 3);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-  const duplicate = (arr) => [...arr, ...arr];
-  const col1Data = useMemo(() => duplicate(col1Projects), [col1Projects]);
-  const col2Data = useMemo(() => duplicate(col2Projects), [col2Projects]);
-  const col3Data = useMemo(() => duplicate(col3Projects), [col3Projects]);
+  // Split projects dynamically based on columnCount
+  const columns = useMemo(() => {
+    const cols = Array.from({ length: columnCount }, () => []);
+    projects.forEach((p, i) => {
+      cols[i % columnCount].push(p);
+    });
+    return cols;
+  }, [columnCount]);
+
+  // Duplicate for infinite scroll
+  const duplicatedColumns = useMemo(
+    () => columns.map((col) => [...col, ...col]),
+    [columns]
+  );
 
   const handleMouseEnter = () => {
     speed.current = 0;
   };
-
   const handleMouseLeave = () => {
     speed.current = baseSpeed;
   };
 
   useEffect(() => {
-    const col1 = col1Ref.current;
-    const col2 = col2Ref.current;
-    const col3 = col3Ref.current;
-    if (!col1 || !col2 || !col3) return;
-
-    const height1 = col1.scrollHeight / 2;
-    const height2 = col2.scrollHeight / 2;
-    const height3 = col3.scrollHeight / 2;
+    const heights = colRefs.current.map((col) => col.scrollHeight / 2);
+    const positions = new Array(columnCount).fill(0);
 
     const tick = (_, deltaTime) => {
       const deltaFactor = deltaTime / 16;
-      pos.current.col1 += speed.current * deltaFactor;
-      pos.current.col2 += speed.current * deltaFactor;
-      pos.current.col3 += speed.current * deltaFactor;
-      if (pos.current.col1 >= height1) pos.current.col1 -= height1;
-      if (pos.current.col2 >= height2) pos.current.col2 -= height2;
-      if (pos.current.col3 >= height3) pos.current.col3 -= height3;
-      gsap.set(col1, { y: -pos.current.col1 });
-      gsap.set(col2, { y: -pos.current.col2 });
-      gsap.set(col3, { y: -pos.current.col3 });
+      positions.forEach((pos, i) => {
+        positions[i] += speed.current * deltaFactor;
+        if (positions[i] >= heights[i]) positions[i] -= heights[i];
+        gsap.set(colRefs.current[i], { y: -positions[i] });
+      });
     };
 
     gsap.ticker.add(tick);
     return () => gsap.ticker.remove(tick);
-  }, []);
+  }, [columnCount]);
 
   return (
     <Section>
       <CustomCursor />
       <div className="left-section" data-cursor-text="My Work">
-        <div className="heading-content">
-          <h2 className="sec_heading">Work</h2>
-          <p>
-            A showcase of my projects — from Shopify themes to React interfaces.
-            Each build is designed for performance, creativity, and great user
-            experience.
-          </p>
+        <div className="heading-container">
+          <div className="heading-content">
+            <h2 className="sec_heading">Work</h2>
+            <p>
+              A showcase of my projects — from Shopify themes to React
+              interfaces. Each build is designed for performance, creativity,
+              and great user experience.
+            </p>
+          </div>
           <Link to="/all-work" className="btn btn-solid">
             View All Work
           </Link>
@@ -277,29 +314,32 @@ const Work = () => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <div className="scroll-column">
-            <div className="scroll-inner" ref={col1Ref}>
-              {col1Data.map((p, i) => (
-                <ProjectCard key={`c1-${i}`} project={p} />
-              ))}
+          {duplicatedColumns.map((col, colIndex) => (
+            <div
+              key={colIndex}
+              className={`scroll-column ${
+                colIndex % 2 === 1 ? "reversed-column" : ""
+              }`}
+            >
+              <div
+                className="scroll-inner"
+                ref={(el) => (colRefs.current[colIndex] = el)}
+              >
+                {col.map((p, i) =>
+                  colIndex % 2 === 1 ? (
+                    <div
+                      className="reversed-card-wrapper"
+                      key={`${colIndex}-${i}`}
+                    >
+                      <ProjectCard project={p} />
+                    </div>
+                  ) : (
+                    <ProjectCard key={`${colIndex}-${i}`} project={p} />
+                  )
+                )}
+              </div>
             </div>
-          </div>
-          <div className="scroll-column reversed-column">
-            <div className="scroll-inner" ref={col2Ref}>
-              {col2Data.map((p, i) => (
-                <div className="reversed-card-wrapper" key={`c2-${i}`}>
-                  <ProjectCard project={p} />
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="scroll-column">
-            <div className="scroll-inner" ref={col3Ref}>
-              {col3Data.map((p, i) => (
-                <ProjectCard key={`c3-${i}`} project={p} />
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </Section>

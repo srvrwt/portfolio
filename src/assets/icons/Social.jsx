@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const SocialWrapper = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 1vw;
   align-items: center;
 
   a {
@@ -20,9 +20,13 @@ const SocialWrapper = styled.div`
     fill: #ababab;
   }
   svg {
-    width: 32px;
-    height: 32px;
+    width: 2vw;
+    min-width: 32px;
+    height: auto;
     fill: #ababab;
+  }
+  @media (max-width: 768px) {
+    gap: 1rem;
   }
 `;
 

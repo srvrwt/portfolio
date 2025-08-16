@@ -51,7 +51,7 @@ function Home() {
 
 function App() {
   return (
-    <Router>
+    <Router basename="/portfolio">
       <div className="App">
         <Switch>
           <Route exact path="/" component={Home} />
